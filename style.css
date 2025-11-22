@@ -1,0 +1,277 @@
+/* ================= Global Settings ================= */
+body, html {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-family: Tahoma, "MS Sans Serif", sans-serif;
+    background-color: #000; /* Prevent flashing before wallpaper loads */
+    user-select: none; /* Disable text selection */
+    -webkit-user-select: none;
+}
+
+/* ================= Desktop Background ================= */
+#desktop {
+    width: 100%;
+    height: calc(100% - 30px); /* Subtract taskbar height */
+    background-image: url("https://wallpapercave.com/w/wp9804836.jpg"); /* XP Classic Wallpaper */
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: flex-start; /* Icons arrange starting from top-left */
+    padding: 10px;
+    box-sizing: border-box;
+    gap: 10px;
+}
+
+/* ================= Desktop Icons ================= */
+.desktop-icon {
+    width: 80px;
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid transparent;
+    border-radius: 2px;
+    cursor: pointer;
+    text-align: center;
+    color: white;
+    margin-bottom: 5px;
+}
+
+/* Mouse Hover Effect */
+.desktop-icon:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Selected State */
+.desktop-icon.selected {
+    background-color: rgba(11, 97, 255, 0.4);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Icon Image (SVG) */
+.desktop-icon-image {
+    width: 32px;
+    height: 32px;
+    margin-bottom: 4px;
+}
+
+/* Force SVG to fill container and show color */
+.desktop-icon-image svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+    filter: drop-shadow(1px 1px 2px rgba(0,0,0,0.6)); /* Icon Shadow */
+}
+
+/* Icon Text */
+.desktop-icon-name {
+    font-size: 11px;
+    line-height: 1.2;
+    text-shadow: 1px 1px 1px rgba(0,0,0,1); /* XP Style Text Shadow */
+    word-wrap: break-word;
+}
+
+/* ================= Bottom Taskbar ================= */
+#taskbar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 30px;
+    background: linear-gradient(to bottom, #245edb 0%, #3f8cf3 9%, #245edb 18%, #245edb 92%, #333 100%);
+    border-top: 1px solid #0058ee;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 10000;
+    padding: 0;
+}
+
+.taskbar-left {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding-left: 2px;
+}
+
+/* Start Button (XP Style) */
+#start-button {
+    height: 24px;
+    padding: 0 10px 0 5px;
+    margin-top: 1px;
+    border: none;
+    border-radius: 0 10px 10px 0; /* Right side rounded corners */
+    background: linear-gradient(to bottom, #388e3c 0%, #4caf50 10%, #388e3c 100%);
+    box-shadow: 2px 2px 3px rgba(0,0,0,0.4) inset; 
+    color: white;
+    font-style: italic;
+    font-weight: bold;
+    font-size: 13px;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    outline: none;
+}
+
+#start-button:hover {
+    background: linear-gradient(to bottom, #4caf50 0%, #66bb6a 10%, #4caf50 100%);
+}
+
+#start-button:active, #start-button.active {
+    box-shadow: 1px 1px 2px rgba(0,0,0,0.6) inset;
+    padding-top: 2px; /* Click depression effect */
+}
+
+.start-orb {
+    width: 16px;
+    height: 16px;
+    background: white; /* Simplified logo */
+    border-radius: 50%;
+    margin-right: 4px;
+    box-shadow: 0 0 2px rgba(0,0,0,0.5);
+    background: radial-gradient(circle at 30% 30%, #fff, #e0e0e0);
+    border: 1px solid #2e7d32;
+}
+
+/* Clock Area */
+#clock {
+    background: #0b76ba;
+    color: white;
+    font-size: 11px;
+    padding: 0 15px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    border-left: 1px solid #104a7a;
+    box-shadow: inset 1px 0 0 rgba(255,255,255,0.2);
+}
+
+/* ================= Start Menu ================= */
+#start-menu {
+    position: absolute;
+    bottom: 30px; /* Right above the taskbar */
+    left: 0;
+    width: 280px;
+    background-color: white;
+    border: 1px solid #004e98;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    box-shadow: 4px 4px 10px rgba(0,0,0,0.5);
+    display: none; /* Hidden by default */
+    z-index: 9999;
+    overflow: hidden;
+}
+
+/* Blue Header */
+.start-header {
+    background: linear-gradient(to bottom, #1c5cc6 0%, #3682e5 100%);
+    height: 50px;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+}
+
+.user-icon-placeholder {
+    width: 36px;
+    height: 36px;
+    background-color: #d1e5fe;
+    border: 2px solid white;
+    border-radius: 3px;
+    margin-right: 10px;
+    box-shadow: 0 0 2px rgba(0,0,0,0.3);
+}
+
+.user-name {
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
+}
+
+/* Orange Divider */
+.start-divider {
+    height: 2px;
+    background: linear-gradient(to right, transparent 0%, #e88e15 50%, transparent 100%);
+    background-color: #e68b2c;
+    border-top: 1px solid #d96a00;
+}
+
+/* Applications List Area */
+#start-menu-apps {
+    padding: 6px;
+    background-color: white;
+    min-height: 200px;
+}
+
+/* Menu Item */
+.menu-item {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 6px;
+    border: 1px solid transparent;
+    background: transparent;
+    cursor: pointer;
+    text-align: left;
+    font-family: Tahoma, sans-serif;
+}
+
+.menu-item:hover {
+    background-color: #316ac5;
+    color: white;
+    border: 1px solid #000080;
+}
+
+.menu-item svg {
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+}
+
+.menu-text {
+    font-size: 11px;
+    color: #333;
+}
+
+.menu-item:hover .menu-text {
+    color: white;
+}
+
+/* Bottom Blue Bar */
+.start-footer {
+    background: linear-gradient(to bottom, #3682e5 0%, #1c5cc6 100%);
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 10px;
+    border-top: 1px solid #3f8cf3;
+}
+
+.footer-text {
+    color: white;
+    font-size: 10px;
+    cursor: pointer;
+    opacity: 0.8;
+}
+.footer-text:hover { opacity: 1; }
+
+/* ================= Color Classes (For SVG) ================= */
+.text-blue-600 { color: #2563eb; }
+.text-red-500 { color: #ef4444; }
+.text-purple-500 { color: #a855f7; }
+.text-yellow-700 { color: #a16207; }
+.text-green-500 { color: #22c55e; }
+.text-blue-500 { color: #3b82f6; }
+.text-gray-600 { color: #4b5563; }
+.text-yellow-500 { color: #eab308; }
